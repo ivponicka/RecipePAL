@@ -23,14 +23,14 @@
       </div>
       <div class="col-md-2">
         <label for="level" class="form-label">Level of difficulty</label>
-        <select id="level" class="form-select">
-          <option selected th:each="level : ${T(com.example.demo.model.Level).values()}" th:value="${level}" th:text="${level}" th:field="*{level}"></option>
-                 </select>
+        <select id="level" class="form-select" th:field="*{level}">
+          <option  th:each="level : ${T(com.example.demo.model.Level).values()}" th:value="${level}" th:text="${level}" ></option>
+         </select>
       </div>
       <div class="col-md-2">
         <label for="category" class="form-label">Category</label>
-        <select id="category" class="form-select">
-          <option selected th:each="category : ${T(com.example.demo.model.Category).values()}" th:value="${category}" th:text="${category}" th:field="*{category}"></option>
+        <select id="category" class="form-select" th:field="*{category}">
+          <option selected th:each="category : ${T(com.example.demo.model.Category).values()}"  th:value="${category}" th:text="${category}" ></option>
         </select>
       </div>
       <div class="col-md-2">

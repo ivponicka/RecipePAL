@@ -4,6 +4,7 @@ import com.example.demo.dto.RecipeDTO;
 import com.example.demo.model.Recipe;
 import com.example.demo.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +27,23 @@ public class RecipeController {
         return "index";
     }
 
+    @GetMapping("/previous-page")
+    public String previousPage(){
+        return "index";
+    }
 
     @GetMapping ("/addRecipe")
     public String addRecipe(Model model){
         model.addAttribute("recipeDTO", new RecipeDTO());
         return "add_new_recipe";
      }
+
+    @GetMapping("/show-recipe/{id}")
+    public  String showRecipe(@PathVariable int id, Model model){
+        model.addAttribute("recipe", recipeService.findRecipe(id).get());
+        return "view_recipe";
+
+    }
 
     @PostMapping ("/addRecipe")
     public String addRecipePost(@ModelAttribute("recipeDTO") RecipeDTO recipeDTO, @RequestParam("imageRec")MultipartFile file, @RequestParam("imgName") String imgName) throws IOException {

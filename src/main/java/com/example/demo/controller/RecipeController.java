@@ -45,6 +45,21 @@ public class RecipeController {
 
     }
 
+    @GetMapping("/edit/{id}")
+    public String editRecipe(@PathVariable int id, Model model){
+        Recipe recipe = recipeService.findRecipe(id).get();
+        RecipeDTO recipeDTO = new RecipeDTO();
+        recipeDTO.setId(recipe.getId());
+        recipeDTO.setTitle(recipe.getTitle());
+        recipeDTO.setCategory(recipe.getCategory());
+        recipeDTO.setLevel(recipe.getLevel());
+        recipeDTO.setTime(recipe.getTime());
+        recipeDTO.setIngredients(recipe.getIngredients());
+        recipeDTO.setInstructions(recipe.getInstructions());
+        recipeDTO.setImageName(recipe.getImageName());
+        model.addAttribute("recipeDTO", recipeDTO);
+        return "edit_recipe";
+    }
     @PostMapping ("/addRecipe")
     public String addRecipePost(@ModelAttribute("recipeDTO") RecipeDTO recipeDTO, @RequestParam("imageRec")MultipartFile file, @RequestParam("imgName") String imgName) throws IOException {
         Recipe recipe = new Recipe();

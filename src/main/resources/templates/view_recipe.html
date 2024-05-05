@@ -40,8 +40,8 @@
             <img th:src="@{${'/images/' + recipe.imageName}}" alt="${recipe.imageName}" width="450px" height="250px">
         </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-outline-danger" style="width: 150px">Edit</button>
-                <a type="button" class="btn btn-outline-dark" style="width: 150px" th:href="@{/}">Back</a>
+                <a type="button" th:href="@{/edit/{id} (id=${recipe.id})}" class="btn btn-outline-danger" style="width: 150px">Edit</a>
+                <a type="button" th:href="@{/}" class="btn btn-outline-dark" style="width: 150px" >Back</a>
             </div>
 
     </div>

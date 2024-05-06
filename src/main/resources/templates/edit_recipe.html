@@ -2,78 +2,87 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>RecipePAL</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link th:href="@{css/styles.css}" type="text/css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>RecipePAL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link th:href="@{css/styles.css}" type="text/css" rel="stylesheet">
 
 </head>
 <body>
 <div class="container">
-  <div class="nav">
-      <img th:src="@{${'/images/add.png'}}" width="200px" height="150px" src="$"/>
-  </div>
-  <div class="row form-box">
-    <form th:action="@{/addRecipe}" method="POST" th:object="${recipeDTO}" class="row g-3" enctype="multipart/form-data" >
-      <div class="col-md-6">
-        <input type="text" class="form-control" id="id" th:field="*{id}"  hidden>
-        <label for="title" class="form-label" >Name</label>
-        <input type="text" class="form-control" id="title" th:field="*{title}" th:value="*{title}" required>
-      </div>
-      <div class="col-md-2">
-        <label for="level" class="form-label">Level of difficulty</label>
-        <select id="level" class="form-select" th:field="*{level}" >
-          <option  th:each="level : ${T(com.example.demo.model.Level).values()}" th:value="${level}" th:text="${level}" ></option>
-         </select>
-      </div>
-      <div class="col-md-2">
-        <label for="category" class="form-label">Category</label>
-        <select id="category" class="form-select" th:field="*{category}">
-          <option selected th:each="category : ${T(com.example.demo.model.Category).values()}"  th:value="${category}" th:text="${category}" ></option>
-        </select>
-      </div>
-      <div class="col-md-2">
-        <label for="time" class="form-label" >Time</label>
-        <input type="number" class="form-control" id="time" th:field="*{time}" pattern="[0-9]*">
-      </div>
-      <div class="col-12">
-        <label for="ingredients" class="form-label">Ingredients</label>
-        <textarea name="instructions" cols="20" rows="3" class="form-control" id="ingredients" placeholder="Ingredients" th:field="*{ingredients}"></textarea>
-
-      </div>
-      <div class="col-12">
-        <label for="instructions" class="form-label">Instructions</label>
-        <textarea name="instructions" cols="40" rows="5" class="form-control" id="instructions" placeholder="Instructions" th:field="*{instructions}"></textarea>
-
-      </div>
-       <div class="col-12">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="favourite" th:field="*{favourite}">
-            <label class="form-check-label" for="favourite">
-              Favourite
-            </label>
-          </div>
-        </div>
-        <div class="col-md-12">
+    <div class="nav justify-content-md-center">
+        <img th:src="@{${'/images/edit.png'}}" width="200px" height="150px" src="$"/>
+    </div>
+    <div class="row form-box">
+        <form th:action="@{/addRecipe}" method="POST" th:object="${recipeDTO}" class="row g-3"
+              enctype="multipart/form-data">
             <div class="col-md-6">
-                <label for="imageRec" class="form-label">Change picture</label>
-                <input type="file" class="form-control" id="imageRec" name="imageRec"  accept="image/jpeg, image/png" onchange="previewImage(event)">
+                <input type="text" class="form-control" id="id" th:field="*{id}" hidden>
+                <label for="title" class="form-label">Name</label>
+                <input type="text" class="form-control" id="title" th:field="*{title}" th:value="*{title}" required>
             </div>
-            <div class="col-md-6">
-                <img id="imagePreview" src="#" alt="Preview" style="display: none; height: 100px; width: 100px;">
-                <img th:src="@{${'/images/' + recipeDTO.imageName}}" alt="IMAAAAGE" width="450px" height="250px">
-                <input type="hidden" name="imgName" th:value="${recipeDTO.imageName}">
+            <div class="col-md-2">
+                <label for="level" class="form-label">Level of difficulty</label>
+                <select id="level" class="form-select" th:field="*{level}">
+                    <option th:each="level : ${T(com.example.demo.model.Level).values()}" th:value="${level}"
+                            th:text="${level}"></option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="category" class="form-label">Category</label>
+                <select id="category" class="form-select" th:field="*{category}">
+                    <option selected th:each="category : ${T(com.example.demo.model.Category).values()}"
+                            th:value="${category}" th:text="${category}"></option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="time" class="form-label">Time</label>
+                <input type="number" class="form-control" id="time" th:field="*{time}" pattern="[0-9]*">
+            </div>
+            <div class="col-12">
+                <label for="ingredients" class="form-label">Ingredients</label>
+                <textarea name="instructions" cols="20" rows="3" class="form-control" id="ingredients"
+                          placeholder="Ingredients" th:field="*{ingredients}"></textarea>
 
             </div>
-        </div>
+            <div class="col-12">
+                <label for="instructions" class="form-label">Instructions</label>
+                <textarea name="instructions" cols="40" rows="5" class="form-control" id="instructions"
+                          placeholder="Instructions" th:field="*{instructions}"></textarea>
 
-        <div class="col-12">
-          <button type="submit" class="btn btn-outline-danger" style="width: 150px">SAVE</button>
-            <a type="button" class="btn btn-outline-dark" style="width: 150px" th:href="@{/}">Back</a>
-        </div>
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="favourite" th:field="*{favourite}">
+                    <label class="form-check-label" for="favourite">
+                        Favourite
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <label for="imageRec" class="form-label">Change picture</label>
+                    <input type="file" class="form-control" id="imageRec" name="imageRec" accept="image/jpeg, image/png"
+                           onchange="previewImage(event)">
+                </div>
+                <div class="col-md-6">
+                    <img id="imagePreview" src="#" alt="Preview" style="display: none; height: 100px; width: 100px;">
+                    <img th:src="@{${'/images/' + recipeDTO.imageName}}" alt="IMAAAAGE" width="450px" height="250px">
+                    <input type="hidden" name="imgName" th:value="${recipeDTO.imageName}">
 
-    </form>
-  </div>
+                </div>
+            </div>
+
+            <div class="col-10">
+                <button type="submit" class="btn btn-outline-danger" style="width: 150px">SAVE</button>
+                <a type="button" class="btn btn-outline-dark" style="width: 150px" th:href="@{/}">Back</a>
+            </div>
+            <div class="col-2">
+                <a type="button" class="btn btn-outline-danger" style="width: 150px" th:href="@{/delete/{id} (id=${recipeDTO.id})}">Delete</a>
+            </div>
+
+        </form>
+    </div>
 </div>
 
 <script>

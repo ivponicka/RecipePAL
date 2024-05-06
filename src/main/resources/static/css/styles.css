@@ -1,37 +1,47 @@
+a {
+    text-decoration: none;
+    color: black;}
+
+h1 {
+    text-align: center;
+}
+
 .nav {
     justify-content: center;
 }
 
-.form-box {
-justify-content: center;
-padding: 10px 100px 50px 100px;
 
+.form-box {
+    justify-content: center;
+    padding: 10px 100px 50px 100px;
 }
 
 #search {
     margin-top: 20px;
     box-shadow: 0 0 0 1px rgb(0, 0, 0, 0.2);
     border-radius: 10px;
+    height: 35px;
+
 }
 
-.fa-solid.fa-magnifying-glass{
-position: absolute;
-top: 50px;
-right: -1270px;
+.fa-solid.fa-magnifying-glass {
+    position: absolute;
+    top: 50px;
+    right: -1270px;
 }
 
-.card-img-top{
-height: 160px;
-width: 200px}
-
-a{
-text-decoration: none;
-  color: black;}
-
-h1{
-    text-align: center;
+.card-img-top {
+    height: 160px;
+    width: 200px
 }
-.recipe-details{
-  color: grey;
+
+.recipe-details {
+    color: grey;
     font-style: italic;
- }
+}
+
+.view-recipe-title {
+    position: absolute;
+    top: 50px;
+}
+

@@ -11,17 +11,18 @@
 <body>
 <div class="container">
     <div class="nav justify-content-md-center">
-        <div class="col-4">
+        <div class="col-3">
             <img th:src="@{${'/images/logo.png'}}" width="200px" height="150px" src="$"/>
         </div>
-        <div class="col-8 justify-content-md-center" >
+        <div class="col-9 justify-content-md-center" >
             <br>
-            <h1 th:text="${recipe.title}"></h1>
+            <h1 th:text="${recipe.title}" id="view-recipe-title"></h1>
+            <hr style="color:red">
         </div>
 
     </div>
     <div class="row">
-            <div class="col-4" >
+            <div class="col-3" >
                 <h5>Level of diffulcty</h5>
                 <h4 th:text="${recipe.level}" style="font-style: italic;color: grey; font-size:14px"></h4>
                 <br>
@@ -30,19 +31,21 @@
                 <br>
                 <h5>Category</h5>
                 <h4 th:text="${recipe.category}" style="font-style: italic;color: grey; font-size:14px"></h4>
+
             </div>
-        <div class="col-8 justify-content-md-center" >
-            <h2>Ingredients</h2>
-            <h4 th:text="${recipe.ingredients}"></h4>
+        <div class="col-9 justify-content-md-center" style="padding-top: 0px" >
+            <h4>Ingredients</h4>
+            <h6 th:text="${recipe.ingredients}"></h6>
             <br>
-            <h2>Instructions</h2>
-            <h4 th:text="${recipe.instructions}"></h4>
+            <h4>Instructions</h4>
+            <h6 th:text="${recipe.instructions}"></h6>
             <img th:src="@{${'/images/' + recipe.imageName}}" alt="${recipe.imageName}" width="450px" height="250px">
-        </div>
-            <div class="col-12">
-                <a type="button" th:href="@{/edit/{id} (id=${recipe.id})}" class="btn btn-outline-danger" style="width: 150px">Edit</a>
+            <div class="col-12" style="padding-top: 50px">
+                <a type="button" th:href="@{/edit/{id} (id=${recipe.id})}" class="btn btn-outline-danger" style="width: 150px; padding-right: 20px">Edit</a>
                 <a type="button" th:href="@{/}" class="btn btn-outline-dark" style="width: 150px" >Back</a>
             </div>
+        </div>
+
 
     </div>
 </div>

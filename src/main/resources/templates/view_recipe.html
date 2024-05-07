@@ -16,7 +16,7 @@
         </div>
         <div class="col-9 justify-content-md-center" >
             <br>
-            <h1 th:text="${recipe.title}" id="view-recipe-title"></h1>
+            <h1 th:text="${recipe.title}"></h1>
             <hr style="color:red">
         </div>
 
@@ -34,12 +34,13 @@
 
             </div>
         <div class="col-9 justify-content-md-center" style="padding-top: 0px" >
-            <h4>Ingredients</h4>
+            <h4><b>Ingredients</b></h4>
             <h6 th:text="${recipe.ingredients}"></h6>
             <br>
-            <h4>Instructions</h4>
+            <h4><b>Instructions</b></h4>
             <h6 th:text="${recipe.instructions}"></h6>
-            <img th:src="@{${'/images/' + recipe.imageName}}" alt="${recipe.imageName}" width="450px" height="300px">
+            <br>
+            <img th:src="@{${'/images/' + recipe.imageName}}" alt="${recipe.imageName}" width="450px" height="300px" style="object-fit: cover">
             <div class="col-12" style="padding-top: 50px">
                 <a type="button" th:href="@{/edit/{id} (id=${recipe.id})}" class="btn btn-outline-danger" style="width: 150px; padding-right: 20px">Edit</a>
                 <a type="button" th:href="@{/}" class="btn btn-outline-dark" style="width: 150px" >Back</a>

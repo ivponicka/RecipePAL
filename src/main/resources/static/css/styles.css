@@ -16,7 +16,6 @@ h1 {
     justify-content: center;
 }
 
-
 .form-box {
     justify-content: center;
     padding: 10px 100px 50px 100px;
@@ -28,7 +27,6 @@ h1 {
     border-radius: 10px;
     height: 35px;
     padding-left: 15px;
-
 }
 
 .fa-solid.fa-magnifying-glass {
@@ -37,9 +35,16 @@ h1 {
     right: -1270px;
 }
 
-.card-img-top {
+#card-img-top {
     height: 160px;
-    width: 200px
+    width: 200px;
+    object-fit: cover;
+}
+
+#view-recipe-img img{
+    width: 450px;
+    height: 300px;
+    object-fit: cover;
 }
 
 .recipe-details {
@@ -47,8 +52,4 @@ h1 {
     font-style: italic;
 }
 
-.view-recipe-title {
-    position: absolute;
-    top: 50px;
-}
 

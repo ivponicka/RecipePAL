@@ -18,7 +18,16 @@
             <img th:src="@{${'/images/logo.png'}}" width="200px" height="150px" src="$"/>
             <a class="btn btn-outline-danger" th:href="@{/addRecipe}" >Add a new recipe</a>
             <a onclick="toggleFavorites()">
-                <img th:src="@{${'/images/favourite.png'}}"  width="150px" height="55px" style="position:absolute; bottom: 40px; left: 160px" src="$" />
+                <img th:src="@{${'/images/favourite.png'}}"  width="150px" height="55px" style="position:absolute; bottom: 40px; left: 158px" src="$" />
+            </a>
+            <a onclick="toggleFavorites()">
+                <img th:src="@{${'/images/easy.png'}}"  width="200px" height="50px" style="position:absolute; bottom: 240px; left: 130px" src="$" />
+            </a>
+            <a onclick="toggleFavorites()">
+                <img th:src="@{${'/images/medium.png'}}"  width="200px" height="50px" style="position:absolute; bottom: 180px; left: 130px" src="$" />
+            </a>
+            <a onclick="toggleFavorites()">
+                <img th:src="@{${'/images/difficult.png'}}"  width="200px" height="50px" style="position:absolute; bottom: 120px; left: 130px" src="$" />
             </a>
         </div>
 
@@ -32,8 +41,8 @@
                        style="width: 14.2rem; padding:5px; margin:5px"
                        th:attr="data-favorite=${recipe.favourite ? 'true' : 'false'}"
                        th:href="@{/show-recipe/{id} (id=${recipe.id})}">
-                        <img th:src="@{${'/images/' + recipe.imageName}}" class="card-img-top" alt="${recipe.imageName}">
-                        <img th:if="${recipe.favourite}" src="./images/heart3.png" alt="Heart icon" style="position: absolute; top: 5px; right: 5px;">
+                        <img th:src="@{${'/images/' + recipe.imageName}}" id="card-img-top" alt="${recipe.imageName}">
+                        <img th:if="${recipe.favourite}" src="./images/heart3.png" alt="Heart icon" style="position: absolute; top: 5px; right: 5px">
                         <div class="card-body col">
                             <em><p class="card-subtitle mb-2 text-muted" th:text="${recipe.category}" style="font-size:12px">..</p></em>
                             <h5 class="card-title" th:text="${recipe.title}" style="font-weight: bold;">...</h5>

@@ -20,13 +20,13 @@
             <a onclick="toggleFavorites()">
                 <img th:src="@{${'/images/favourite.png'}}"  width="150px" height="55px" style="position:absolute; bottom: 40px; left: 158px" src="$" />
             </a>
-            <a onclick="toggleFavorites()">
+            <a onclick="toggleCardsByLevel('EASY')">
                 <img th:src="@{${'/images/easy.png'}}"  width="200px" height="50px" style="position:absolute; bottom: 240px; left: 130px" src="$" />
             </a>
-            <a onclick="toggleFavorites()">
+            <a onclick="toggleCardsByLevel('MEDIUM')">
                 <img th:src="@{${'/images/medium.png'}}"  width="200px" height="50px" style="position:absolute; bottom: 180px; left: 130px" src="$" />
             </a>
-            <a onclick="toggleFavorites()">
+            <a onclick="toggleCardsByLevel('DIFFICULT')">
                 <img th:src="@{${'/images/difficult.png'}}"  width="200px" height="50px" style="position:absolute; bottom: 120px; left: 130px" src="$" />
             </a>
         </div>
@@ -39,7 +39,7 @@
                     <!-- Add custom data attribute to indicate favorite status -->
                     <a class="card g-2 p-3 col-lg-3 col-md-6 col-sm-12"
                        style="width: 14.2rem; padding:5px; margin:5px"
-                       th:attr="data-favorite=${recipe.favourite ? 'true' : 'false'}"
+                       th:attr="data-level=${recipe.level}, data-favorite=${recipe.favourite ? 'true' : 'false'}"
                        th:href="@{/show-recipe/{id} (id=${recipe.id})}">
                         <img th:src="@{${'/images/' + recipe.imageName}}" id="card-img-top" alt="${recipe.imageName}">
                         <img th:if="${recipe.favourite}" src="./images/heart3.png" alt="Heart icon" style="position: absolute; top: 5px; right: 5px">
@@ -103,6 +103,17 @@
         }
     }
 
+
+    function toggleCardsByLevel(level) {
+        var cards = document.querySelectorAll('.card');
+        cards.forEach(function(card) {
+            if (card.getAttribute('data-level') === level) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
 
 </script>
 

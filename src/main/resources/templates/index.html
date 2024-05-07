@@ -10,15 +10,13 @@
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <div class="mb-12">My recipes PAL</div>
 
-    </div>
 
     <div class="row ">
         <div class="col-md-2" style="text-align:center">
             <img th:src="@{${'/images/logo.png'}}" width="200px" height="150px" src="$"/>
             <a class="btn btn-outline-danger" th:href="@{/addRecipe}" >Add a new recipe</a>
+            <img th:src="@{${'/images/favourite.png'}}" width="150px" height="55px" style="position:absolute; bottom: 40px; left: 160px" src="$"/>
         </div>
 
         <div class="col-sm-9 justify-content-md-center px-3" >
@@ -26,6 +24,7 @@
                 <input type="search" id="search" placeholder="Search for..." > <i class="fa-solid fa-magnifying-glass" style="position: absolute;  right: 306px;"></i>
                 <a class="card g-2 p-3 col-lg-3 col-md-6 col-sm-12" style="width: 14.2rem; padding:5px; margin:5px" th:each="recipe : ${recipes}" th:href="@{/show-recipe/{id} (id=${recipe.id})}">
                     <img th:src="@{${'/images/' + recipe.imageName}}" class="card-img-top" alt="${recipe.imageName}">
+                    <img th:if="${recipe.favourite}" src="./images/heart3.png" alt="Heart icon" style="position: absolute; top: 5px; right: 5px;">
                     <div class="card-body col">
                         <em><p class="card-subtitle mb-2 text-muted" th:text="${recipe.category}" style="font-size:12px">..</p></em>
                        <h5 class="card-title" th:text="${recipe.title}" style="font-weight: bold;">...</h5>

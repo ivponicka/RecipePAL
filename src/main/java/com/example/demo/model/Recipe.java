@@ -29,7 +29,7 @@ public class Recipe {
     @Column(name = "ingredients")
 
     private  String ingredients;
-    @Column(name = "intructions")
+    @Column(name = "intructions", length = 350)
     private String instructions;
 
     @Column(name = "imageName")

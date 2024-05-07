@@ -70,6 +70,11 @@ public class RecipeController {
         recipe.setTime(recipeDTO.getTime());
         recipe.setIngredients(recipeDTO.getIngredients());
         recipe.setInstructions(recipeDTO.getInstructions());
+        if(recipeDTO.isFavourite()){
+            recipe.setFavourite(true);
+        } else {
+            recipe.setFavourite(false);
+        }
         String imageUUID;
 
         if(!file.isEmpty()){

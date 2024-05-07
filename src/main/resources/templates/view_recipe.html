@@ -39,7 +39,7 @@
             <br>
             <h4>Instructions</h4>
             <h6 th:text="${recipe.instructions}"></h6>
-            <img th:src="@{${'/images/' + recipe.imageName}}" alt="${recipe.imageName}" width="450px" height="250px">
+            <img th:src="@{${'/images/' + recipe.imageName}}" alt="${recipe.imageName}" width="450px" height="300px">
             <div class="col-12" style="padding-top: 50px">
                 <a type="button" th:href="@{/edit/{id} (id=${recipe.id})}" class="btn btn-outline-danger" style="width: 150px; padding-right: 20px">Edit</a>
                 <a type="button" th:href="@{/}" class="btn btn-outline-dark" style="width: 150px" >Back</a>

@@ -18,7 +18,7 @@
       <div class="col-md-6">
         <input type="text" class="form-control" id="id" th:field="*{id}" hidden>
         <label for="title" class="form-label" >Name</label>
-        <input type="text" class="form-control" th:field="*{title}" id="title" required>
+        <input type="text" class="form-control" th:field="*{title}" id="title" placeholder="Title" required>
       </div>
       <div class="col-md-2">
         <label for="level" class="form-label">Level of difficulty</label>
@@ -43,7 +43,7 @@
       </div>
       <div class="col-12">
         <label for="instructions" class="form-label">Instructions</label>
-        <textarea name="instructions" cols="40" rows="5" class="form-control" id="instructions" placeholder="Instructions" th:field="*{instructions}"></textarea>
+        <textarea name="instructions" cols="50" rows="5" class="form-control" id="instructions" placeholder="Instructions" th:field="*{instructions}"></textarea>
 
       </div>
        <div class="col-12">

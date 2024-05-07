@@ -5,37 +5,44 @@
     <title>RecipePAL</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-         <link th:href="@{css/styles.css}" type="text/css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link th:href="@{css/styles.css}" type="text/css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"
+          type="text/css"/>
 </head>
 <body>
 <div class="container">
 
 
-    <div class="row ">
+    <div class="row">
         <div class="col-md-2" style="text-align:center">
             <img th:src="@{${'/images/logo.png'}}" width="200px" height="150px" src="$"/>
             <a class="btn btn-outline-danger" th:href="@{/addRecipe}" >Add a new recipe</a>
-            <img th:src="@{${'/images/favourite.png'}}" width="150px" height="55px" style="position:absolute; bottom: 40px; left: 160px" src="$"/>
+            <a onclick="toggleFavorites()">
+                <img th:src="@{${'/images/favourite.png'}}"  width="150px" height="55px" style="position:absolute; bottom: 40px; left: 160px" src="$" />
+            </a>
         </div>
 
-        <div class="col-sm-9 justify-content-md-center px-3" >
+        <div class="col-sm-9 justify-content-md-center px-3">
             <div class="row gx-2" id="recipeContainer">
                 <input type="search" id="search" placeholder="Search for..." > <i class="fa-solid fa-magnifying-glass" style="position: absolute;  right: 306px;"></i>
-                <a class="card g-2 p-3 col-lg-3 col-md-6 col-sm-12" style="width: 14.2rem; padding:5px; margin:5px" th:each="recipe : ${recipes}" th:href="@{/show-recipe/{id} (id=${recipe.id})}">
-                    <img th:src="@{${'/images/' + recipe.imageName}}" class="card-img-top" alt="${recipe.imageName}">
-                    <img th:if="${recipe.favourite}" src="./images/heart3.png" alt="Heart icon" style="position: absolute; top: 5px; right: 5px;">
-                    <div class="card-body col">
-                        <em><p class="card-subtitle mb-2 text-muted" th:text="${recipe.category}" style="font-size:12px">..</p></em>
-                       <h5 class="card-title" th:text="${recipe.title}" style="font-weight: bold;">...</h5>
-                        <h6 class="card-subtitle mb-2 text-muted" th:text="${recipe.level}+ ' - ' + ${recipe.time} + 'min'" style="font-size:13px">..</h6>
-                    </div>
-
-
-                </a>
+                <!-- Iterate over recipes -->
+                <th:block th:each="recipe : ${recipes}">
+                    <!-- Add custom data attribute to indicate favorite status -->
+                    <a class="card g-2 p-3 col-lg-3 col-md-6 col-sm-12"
+                       style="width: 14.2rem; padding:5px; margin:5px"
+                       th:attr="data-favorite=${recipe.favourite ? 'true' : 'false'}"
+                       th:href="@{/show-recipe/{id} (id=${recipe.id})}">
+                        <img th:src="@{${'/images/' + recipe.imageName}}" class="card-img-top" alt="${recipe.imageName}">
+                        <img th:if="${recipe.favourite}" src="./images/heart3.png" alt="Heart icon" style="position: absolute; top: 5px; right: 5px;">
+                        <div class="card-body col">
+                            <em><p class="card-subtitle mb-2 text-muted" th:text="${recipe.category}" style="font-size:12px">..</p></em>
+                            <h5 class="card-title" th:text="${recipe.title}" style="font-weight: bold;">...</h5>
+                            <h6 class="card-subtitle mb-2 text-muted" th:text="${recipe.level}+ ' - ' + ${recipe.time} + 'min'" style="font-size:13px">..</h6>
+                        </div>
+                    </a>
+                </th:block>
             </div>
         </div>
-
     </div>
 
 
@@ -62,7 +69,32 @@
 
     document.getElementById("search").addEventListener("input", filterRecipes);
 
+    var showFavorites = false;
+
+    function toggleFavorites() {
+        // Get all recipe cards
+        var cards = document.querySelectorAll('.card');
+
+        // If currently showing favorites, switch to showing all
+        if (showFavorites) {
+            cards.forEach(function(card) {
+                card.style.display = 'block'; // Show all cards
+            });
+            showFavorites = false; // Update state
+        } else {
+            // If currently showing all, switch to showing only favorites
+            cards.forEach(function(card) {
+                if (card.getAttribute('data-favorite') === 'true') {
+                    card.style.display = 'block'; // Show favorite cards
+                } else {
+                    card.style.display = 'none'; // Hide non-favorite cards
+                }
+            });
+            showFavorites = true; // Update state
+        }
     }
+
+
 </script>
 
 

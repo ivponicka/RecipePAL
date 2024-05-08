@@ -11,11 +11,9 @@
 </head>
 <body>
 <div class="container">
-
-
     <div class="row">
         <div class="col-md-2" style="text-align:center">
-            <img th:src="@{${'/images/logo.png'}}" width="200px" height="150px" src="$"/>
+            <a onclick="toggleCardsAll()"><img th:src="@{${'/images/logo.png'}}" width="200px" height="150px"/></a>
             <a class="btn btn-outline-danger" th:href="@{/addRecipe}" >Add a new recipe</a>
             <a onclick="toggleFavorites()">
                 <img th:src="@{${'/images/favourite.png'}}"  width="150px" height="55px" style="position:absolute; bottom: 40px; left: 158px" src="$" />
@@ -30,7 +28,6 @@
                 <img th:src="@{${'/images/difficult.png'}}"  width="200px" height="50px" style="position:absolute; bottom: 120px; left: 130px" src="$" />
             </a>
         </div>
-
         <div class="col-sm-9 justify-content-md-center px-3">
             <div class="row gx-2" id="recipeContainer">
                 <input type="search" id="search" placeholder="Search for..." > <i class="fa-solid fa-magnifying-glass" style="position: absolute;  right: 306px;"></i>
@@ -53,12 +50,9 @@
             </div>
         </div>
     </div>
-
-
 </div>
 </div>
 <script>
-
     function filterRecipes() {
         var input, filter, cards, card, title, i, txtValue;
         input = document.getElementById("search");
@@ -79,30 +73,24 @@
     document.getElementById("search").addEventListener("input", filterRecipes);
 
     var showFavorites = false;
-
     function toggleFavorites() {
-        // Get all recipe cards
         var cards = document.querySelectorAll('.card');
-
-        // If currently showing favorites, switch to showing all
         if (showFavorites) {
             cards.forEach(function(card) {
-                card.style.display = 'block'; // Show all cards
+                card.style.display = 'block';
             });
-            showFavorites = false; // Update state
+            showFavorites = false;
         } else {
-            // If currently showing all, switch to showing only favorites
             cards.forEach(function(card) {
                 if (card.getAttribute('data-favorite') === 'true') {
-                    card.style.display = 'block'; // Show favorite cards
+                    card.style.display = 'block';
                 } else {
-                    card.style.display = 'none'; // Hide non-favorite cards
+                    card.style.display = 'none';
                 }
             });
-            showFavorites = true; // Update state
+            showFavorites = true;
         }
     }
-
 
     function toggleCardsByLevel(level) {
         var cards = document.querySelectorAll('.card');
@@ -115,8 +103,12 @@
         });
     }
 
+    function toggleCardsAll(){
+        var cards = document.querySelectorAll('.card');
+        cards.forEach(function(card) {
+            card.style.display='block';
+        });
+    }
 </script>
-
-
 </body>
 </html>

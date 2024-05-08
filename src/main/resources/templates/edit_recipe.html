@@ -1,4 +1,3 @@
-
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -6,7 +5,6 @@
     <title>RecipePAL</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link th:href="@{css/styles.css}" type="text/css" rel="stylesheet">
-
 </head>
 <body>
 <div class="container"  style="padding-bottom: 50px" >
@@ -43,13 +41,11 @@
                 <label for="ingredients" class="form-label">Ingredients</label>
                 <textarea name="instructions" cols="20" rows="3" class="form-control" id="ingredients"
                           placeholder="Ingredients" th:field="*{ingredients}"></textarea>
-
             </div>
             <div class="col-12">
                 <label for="instructions" class="form-label">Instructions</label>
                 <textarea name="instructions" cols="40" rows="5" class="form-control" id="instructions"
                           placeholder="Instructions" th:field="*{instructions}"></textarea>
-
             </div>
             <div class="col-12">
                 <div class="form-check">
@@ -65,14 +61,13 @@
                     <input type="file" class="form-control" id="imageRec" name="imageRec" accept="image/jpeg, image/png"
                            onchange="previewImage(event)">
                 </div>
+                <br>
                 <div class="col-md-6">
                     <img id="imagePreview" src="#" alt="Preview" style="display: none; height: 100px; width: 100px;">
                     <img th:src="@{${'/images/' + recipeDTO.imageName}}" alt="IMAAAAGE" width="450px" height="250px">
                     <input type="hidden" name="imgName" th:value="${recipeDTO.imageName}">
-
                 </div>
             </div>
-
             <div class="col-10">
                 <button type="submit" class="btn btn-outline-danger" style="width: 150px">SAVE</button>
                 <a type="button" class="btn btn-outline-dark" style="width: 150px" th:href="@{/}">Back</a>
@@ -80,7 +75,6 @@
             <div class="col-2">
                 <a type="button" class="btn btn-outline-danger" style="width: 150px" th:href="@{/delete/{id} (id=${recipeDTO.id})}">Delete</a>
             </div>
-
         </form>
     </div>
 </div>
@@ -90,14 +84,11 @@
         var imagePreview = document.getElementById('imagePreview');
         imagePreview.src = URL.createObjectURL(event.target.files[0]);
         imagePreview.style.display = 'block';
-
-        // Hide current image if it exists
         var currentImage = document.getElementById('currentImage');
         if (currentImage) {
             currentImage.style.display = 'none';
         }
     }
 </script>
-
 </body>
 </html>
